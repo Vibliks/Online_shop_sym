@@ -36,6 +36,10 @@ public class Pricelist {
         add(film_type, film_name, 0, 0, 0, 0);
     }
 
+    public void remove(Film_type film_type, String film_name) {
+        HashPriceList.remove(film_name);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

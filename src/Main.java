@@ -71,28 +71,28 @@ public class Main {
         cennik.add(Film_type.ACTION, "Król Artur");        // metoda przyjmująca 2 parametry
         // (kolejność, typy i oznaczenie parametrów są obowiązkowe, podane argumenty wywołania są przykładowe):
         // darmowy dostęp
+
+
+        cennik.remove(Film_type.COMEDY, "Król");			// metoda remove (do usunięcia ceny konkretnego programu) przyjmująca 2 parametry
+
         System.out.println(cennik);
+
+        // Klient Kinoman deklaruje kwotę 60 zł na zamównienia, posiada abonament w serwisie
+        Client kinoman = new Client("Kinoman", 60, YES);
+
+        // Klient Kinoman dodaje do listy życzeń różne programy:
+        // "Król Lear" typu obyczajowego na 4 urządzeniach,
+        // "Król Artur" typu sensacyjnego na 3 urządzeniach,
+        // "Król lew" typu muzycznego na 2 urządzeniach,
+        // "Korona" typu komediowego na 2 urządzeniach,
+        kinoman.add(new Drama("Król Lear", 4));
+        kinoman.add(new Action("Król Artur", 3));
+        kinoman.add(new Musical("Król lew", 2));
+        kinoman.add(new Comedy("Korona", 2));
+
     }
 }
-//
-//        cennik.remove(COMEDY, "Król");			// metoda remove (do usunięcia ceny konkretnego programu) przyjmująca 2 parametry
-//
-//
-//
-//        // Klient Kinoman deklaruje kwotę 60 zł na zamównienia, posiada abonament w serwisie
-//        Client kinoman = new Client("Kinoman", 60, YES);
-//
-//        // Klient Kinoman dodaje do listy życzeń różne programy:
-//        // "Król Lear" typu obyczajowego na 4 urządzeniach,
-//        // "Król Artur" typu sensacyjnego na 3 urządzeniach,
-//        // "Król lew" typu muzycznego na 2 urządzeniach,
-//        // "Korona" typu komediowego na 2 urządzeniach,
-//        kinoman.add(new Drama("Król Lear", 4));
-//        kinoman.add(new Action("Król Artur", 3));
-//        kinoman.add(new Musical("Król lew", 2));
-//        kinoman.add(new Comedy("Korona", 2));
-//
-//
+
 //        // Lista życzeń klienta Kinoman
 //        Wishlist listaKinomana = kinoman.getWishlist();
 //
