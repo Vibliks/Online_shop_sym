@@ -1,17 +1,20 @@
 import java.util.ArrayList;
 import java.util.List;
+import BOOL.BOOL;
+import Films.Program;
+import static BOOL.BOOL.*;
 
 public class Client {
     private String name;
     private int saldo;
-    private String SUB;
+    private BOOL SUB;
     private boolean sub;
     private List<Program> wishList;
 
-    public Client(String name, int saldo, String SUB) {
+    public Client(String name, int saldo, BOOL SUB) {
         this.name = name;
         this.saldo = saldo;
-        if(SUB == "YES") {
+        if(SUB == YES) {
             this.sub = true;
         } else {this.sub = false;}
         this.wishList = new ArrayList<>();

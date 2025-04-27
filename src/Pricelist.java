@@ -1,3 +1,5 @@
+import Film_type.Film_type;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,10 +38,22 @@ public class Pricelist {
         add(film_type, film_name, 0, 0, 0, 0);
     }
 
-    public void remove(Film_type film_type, String film_name) {
-        HashPriceList.remove(film_name);
-    }
+//    public void remove(Film_type.Film_type film_type, String film_name) {
+//        HashPriceList.remove(film_name);
+//    }
 
+    public void remove(Film_type film_type, String film_name) {
+        Map<Film_type, Price> innerMap = HashPriceList.get(film_name);
+        if (innerMap != null) {
+            Price price = innerMap.get(film_type);
+            if (price != null) {
+                price.setPrice1(0);
+                price.setPrice2(0);
+                price.setPrice3(0);
+                price.setPrice4(0);
+            }
+        }
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

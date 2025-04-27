@@ -33,6 +33,10 @@
 //Aplikacja powinna być napisana tak, aby następujący, przykładowy program
 
 // import...
+import Films.*;
+import static Film_type.Film_type.*;
+import static BOOL.BOOL.*;
+import Film_type.Film_type;
 
 public class Main {
 //
@@ -47,7 +51,7 @@ public class Main {
         Pricelist cennik = Pricelist.getPricelist();
 
         // dodawanie nowych cen do cennika
-        cennik.add(Film_type.MUSICAL, "Król lew", 5, 3, 12, 6);    // metoda przyjmująca 6 parametrów
+        cennik.add(MUSICAL, "Król lew", 5, 3, 12, 6);    // metoda przyjmująca 6 parametrów
         // (kolejność, typy i oznaczenie parametrów są obowiązkowe, podane argumenty wywołania są przykładowe):
         // "próg" urządzeń: 3
         // jeśli klient ma abonament: 5 zł/urządzenie (z dowolną liczbą urządzeń)
@@ -60,18 +64,19 @@ public class Main {
         // niezależnie od tego, czy klient posiada abonament czy nie
         // do 2 urządzeń za 15 zł/urządzenie, wpp. 10 zł/urządzenie
 
-        cennik.add(Film_type.COMEDY, "Królowa", 7, 14);        // metoda przyjmująca 4 parametry
+        cennik.add(COMEDY, "Królowa", 7, 14);        // metoda przyjmująca 4 parametry
         // (kolejność, typy i oznaczenie parametrów są obowiązkowe, podane argumenty wywołania są przykładowe):
         // 7 zł/urządzenie jeśli klient ma abonament, wpp. 14 zł/urządzenie
 
 
-        cennik.add(Film_type.COMEDY, "Król", 5, 10);
+        cennik.add(COMEDY, "Król", 5, 10);
 
 
-        cennik.add(Film_type.ACTION, "Król Artur");        // metoda przyjmująca 2 parametry
+        cennik.add(ACTION, "Król Artur");        // metoda przyjmująca 2 parametry
         // (kolejność, typy i oznaczenie parametrów są obowiązkowe, podane argumenty wywołania są przykładowe):
         // darmowy dostęp
-
+        System.out.println(cennik);
+        System.out.println("=============== \n");
 
         cennik.remove(Film_type.COMEDY, "Król");			// metoda remove (do usunięcia ceny konkretnego programu) przyjmująca 2 parametry
 
@@ -111,7 +116,7 @@ public class Main {
 //        System.out.println("Po przepakowaniu, koszyk klienta " + koszykKinomana);
 //
 //        // Ile wynosi cena wszystkich programów typu obyczajowego w koszyku klienta Kinoman
-//        System.out.println("Progamy obyczajowe w koszyku klienta Kinoman kosztowały:  " + price(koszykKinomana, DRAMA));
+//        System.out.println("Progamy obyczajowe w koszyku klienta Kinoman kosztowały:  " + price(koszykKinomana, Films.DRAMA));
 //
 //        // Klient zapłaci...
 //        kinoman.pay(CARD, false);	// płaci kartą płatniczą, prowizja 2%
@@ -155,7 +160,7 @@ public class Main {
 //        // Co zostało w koszyku klienta Krytyk (za mało pieniędzy miał)
 //        System.out.println("Po zapłaceniu, koszyk klienta " + koszykKrytyka);
 //
-//        krytyk.returnVOD(COMEDY, "Królowa", 1);	// zwrot (do koszyka) 1 urządzenia programu komediowego "Królowa" z ostatniej transakcji
+//        krytyk.returnVOD(Films.COMEDY, "Królowa", 1);	// zwrot (do koszyka) 1 urządzenia programu komediowego "Królowa" z ostatniej transakcji
 //
 //        // Ile klientowi krytyk zostało pieniędzy?
 //        System.out.println("Po zwrocie, klientowi krytyk zostało: " + krytyk.getWallet() + " zł");

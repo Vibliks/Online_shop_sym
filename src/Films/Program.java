@@ -1,5 +1,8 @@
+package Films;
 
-    public abstract class Program {
+import Film_type.Film_type;
+
+public abstract class Program {
         protected String title;
         protected int devices;
 
