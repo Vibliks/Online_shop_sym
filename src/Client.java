@@ -4,12 +4,14 @@ import BOOL.BOOL;
 import Films.Program;
 import static BOOL.BOOL.*;
 
-public class Client {
+public class Client implements Wishlist{
     private String name;
     private int saldo;
     private BOOL SUB;
     private boolean sub;
-    private List<Program> wishList;
+    List<Program> wishlist = new ArrayList<>();
+
+
 
     public Client(String name, int saldo, BOOL SUB) {
         this.name = name;
@@ -17,16 +19,18 @@ public class Client {
         if(SUB == YES) {
             this.sub = true;
         } else {this.sub = false;}
-        this.wishList = new ArrayList<>();
+        this.wishlist = new ArrayList<>();
     }
 
-    public void add(Program program) {
-        wishList.add(program);
-    }
 
-    public List<Program> getWishList() {
-        return wishList;
-    }
+
+//    public void add(Program program) {
+//        wishlist.add(program);
+//    }
+
+//    public List<Program> getWishList() {
+//        return wishlist;
+//    }
 
     public boolean hasSubscription() {
         return sub;
@@ -44,8 +48,26 @@ public class Client {
         this.saldo -= amount;
     }
 
+//    @Override
+//    public String toString() {
+//        return name + ":\n\t" + for(Program film : wishlist){
+//            String s = "\n\t" + getWishList().toString();
+//        };
+//                //"Client{name='" + name + "', saldo=" + saldo + ", sub=" + sub + ", wishlist=" + wishlist + "}";
+//    }
+
     @Override
-    public String toString() {
-        return "Client{name='" + name + "', saldo=" + saldo + ", sub=" + sub + ", wishList=" + wishList + "}";
+    public void add(Program program) {
+        wishlist.add(program);
+    }
+
+    @Override
+    public void remove(Program program) {
+        wishlist.remove(program);
+    }
+
+    @Override
+    public Wishlist getWishList() {
+        return this;
     }
 }

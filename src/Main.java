@@ -39,7 +39,7 @@ import static BOOL.BOOL.*;
 import Film_type.Film_type;
 
 public class Main {
-//
+
 //    // cena programów danego gatunku z koszyka
 //    static int price(Basket b, GENRE g) {
 //        /*<- tu trzeba wpisać ciało metody */
@@ -95,14 +95,13 @@ public class Main {
         kinoman.add(new Musical("Król lew", 2));
         kinoman.add(new Comedy("Korona", 2));
 
-    }
-}
+
 
 //        // Lista życzeń klienta Kinoman
-//        Wishlist listaKinomana = kinoman.getWishlist();
-//
-//        System.out.println("Lista życzeń klienta " + listaKinomana);
-//
+        Wishlist listaKinomana = kinoman.getWishList();
+
+        System.out.println("Lista życzeń klienta " + listaKinomana);
+
 //        // Przed płaceniem, klient przepakuje programy z listy życzeń do koszyka.
 //        // Możliwe, że na liście życzeń są programy niemające ceny w cenniku,
 //        // w takim przypadku nie trafiłyby do koszyka
@@ -114,7 +113,8 @@ public class Main {
 //
 //        // Co jest w koszyku klienta Kinoman
 //        System.out.println("Po przepakowaniu, koszyk klienta " + koszykKinomana);
-//
+    }
+}
 //        // Ile wynosi cena wszystkich programów typu obyczajowego w koszyku klienta Kinoman
 //        System.out.println("Progamy obyczajowe w koszyku klienta Kinoman kosztowały:  " + price(koszykKinomana, Films.DRAMA));
 //
