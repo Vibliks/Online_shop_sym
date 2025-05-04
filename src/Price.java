@@ -11,6 +11,7 @@ public class Price {
         this.price4 = price4;
     }
 
+
     @Override
     public String toString() {
         return "[Price with Sub = " + price1 + ", Price up to 3 = " + price2 + ", Price below 3 = " + price3 + ", Price = " + price4 + "]";

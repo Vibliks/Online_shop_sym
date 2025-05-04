@@ -24,6 +24,6 @@ public class Comedy extends Program{
 
     @Override
     public String toString() {
-        return title + " (" + getType() + ") on " + devices + " devices";
+        return title + ", typ: " + "komedia" + ", ile: " + devices + " urządzeia, " + "cena ";
     }
 }

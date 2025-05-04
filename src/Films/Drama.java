@@ -24,6 +24,6 @@ public class Drama extends Program{
 
     @Override
     public String toString() {
-        return title + " (" + getType() + ") on " + devices + " devices";
+        return title + ", typ: " + "obyczaj" + ", ile: " + devices + " urządzeia, " + "cena ";
     }
 }

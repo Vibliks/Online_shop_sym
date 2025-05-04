@@ -67,7 +67,57 @@ public class Client implements Wishlist{
     }
 
     @Override
-    public Wishlist getWishList() {
+    public Wishlist getWishList(){
         return this;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(":\n");
+        for (Program wish : wishlist) {
+            sb.append("    ").append(wish.toString()).append("\n");
+        }
+
+
+
+        return sb.toString();
+    }
+
+//    private double getPricePerDevice(Map<String, Map<GENRE, Price>> prices, String title, GENRE genre, int devices) {
+//        if (!prices.containsKey(title)) return -1.0;
+//        if (!prices.get(title).containsKey(genre)) return -1.0;
+//
+//        boolean hasSub = (bool == hasSubscription.YES);
+//        return prices.get(title).get(genre).getPricePerDevice(hasSub, devices);
+//    }
+//
+//
+//    private int getDevices(Program p) {
+//        if (p instanceof Action) return ((Action) p).getDevices();
+//        if (p instanceof Comedy) return ((Comedy) p).getDevices();
+//        if (p instanceof Drama) return ((Drama) p).getDevices();
+//        if (p instanceof Musical) return ((Musical) p).getDevices();
+//        return 0;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        Pricelist pricelist = Pricelist.getPricelist();
+//        Map<String, Map<GENRE, Price>> prices = pricelist.getPrices();
+//
+//        StringBuilder sb = new StringBuilder();
+//        sb.append(name).append(":\n");
+//
+//        for (Program p : wishlist) {
+//            double price = getPricePerDevice(prices, p.getTitle(), p.getGenre(), getDevices(p));
+//            sb.append(p.toString());
+//            sb.append(", ");
+//            sb.append(price >= 0 ? "cena " + String.format("%.2f", price) : "ceny brak");
+//            sb.append("\n");
+//        }
+//
+//        return sb.toString();
+//    }
 }
+// czy ma sub ile urzączeń 4

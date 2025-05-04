@@ -24,6 +24,6 @@ public class Musical extends Program{
 
     @Override
     public String toString() {
-        return title + " (" + getType() + ") on " + devices + " devices";
+        return title + ", typ: " + "muzyczny" + ", ile: " + devices + " urządzeia, " + "cena ";
     }
 }

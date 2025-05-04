@@ -1,6 +1,6 @@
 package Films;
-
 import Film_type.Film_type;
+
 
 public abstract class Program {
         protected String title;
@@ -9,6 +9,17 @@ public abstract class Program {
         public Program(String title, int devices) {
             this.title = title;
             this.devices = devices;
+        }
+
+//        public boolean Getifsub(){
+//            return true;
+//        }
+
+        public int Getcena(){
+
+
+
+            return 0;
         }
 
         public String getTitle() {
@@ -23,7 +34,8 @@ public abstract class Program {
 
         @Override
         public String toString() {
-            return title + " (" + getType() + ") on " + devices + " devices";
+            return title + ", typ:" + getType() + ", ile: " + devices + " urządzeia, " + "cena " + Getcena();
         }
     }
-
+//                                      Król Lear, typ: obyczaj, ile: 4 urządzenia, cena 10.00
+//                                      Korona      (COMEDY)          on 2 devices

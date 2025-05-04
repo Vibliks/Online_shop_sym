@@ -24,6 +24,6 @@ public class Action extends Program{
 
     @Override
     public String toString() {
-        return title + " (" + getType() + ") on " + devices + " devices";
+        return title + ", typ: " + "sensacja" + ", ile: " + devices + " urządzeia, " + "cena ";
     }
 }
