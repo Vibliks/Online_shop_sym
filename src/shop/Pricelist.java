@@ -19,20 +19,17 @@ public class Pricelist {
         return INSTANCE;
     }
 
-    // Full 6-param version
     public void add(Film_type film_type, String film_name, int price1, int price2, int price3, int price4) {
         Map<Film_type, Price> map = new HashMap<>();
         map.put(film_type, new Price(price1, price2, price3, price4));
         HashPriceList.put(film_name, map);
     }
 
-    // przed: (2, 15, 10) → źle mapowane
     public void add(Film_type film_type, String film_name, int acclimit, int pricetolimit, int abovelimit) {
         add(film_type, film_name, 0, acclimit, pricetolimit, abovelimit);
     }
 
 
-    // jeśli (withsub, noSubPrice)
     public void add(Film_type film_type, String film_name, int withsub, int noSubPrice) {
         add(film_type, film_name, withsub, 0, noSubPrice, 0);
     }
@@ -41,9 +38,7 @@ public class Pricelist {
     public void add(Film_type film_type, String film_name) {
         add(film_type, film_name, 0, 0, 0, 0);
     }
-//    public void remove(Film_type.Film_type film_type, String film_name) {
-//        HashPriceList.remove(film_name);
-//    }
+
 
     public void remove(Film_type film_type, String film_name) {
         Map<Film_type, Price> innerMap = HashPriceList.get(film_name);
@@ -93,33 +88,43 @@ public class Pricelist {
             return -1;  // brak ceny
         }
 
-        // darmowy program
-        if (rule.getWithsub() == 0 && rule.getPricetolimit() == 0 && rule.getAbovelimit() == 0) {
+
+        if(hasSubscription == true) {
+            if (numDevices <= 3) {
+                return rule.getWithsub();
+            } else { return  3 * rule.getWithsub() + (numDevices - 3) * rule.getAbovelimit(); }
+        } else {
             return 0;
         }
 
-        // przypadek: tylko limit, bez wpływu abonamentu (jak "Król Lear")
-        if (rule.getWithsub() == 0 && rule.getAcclimit() > 0) {
-            if (numDevices <= rule.getAcclimit()) {
-                return numDevices * rule.getPricetolimit();
-            } else {
-                return numDevices * rule.getAbovelimit();
-            }
-        }
 
-        // przypadek: abonament decyduje
-        if (hasSubscription) {
-            return numDevices * rule.getWithsub();
-        } else {
-            if (rule.getAcclimit() > 0) {
-                if (numDevices <= rule.getAcclimit()) {
-                    return numDevices * rule.getPricetolimit();
-                } else {
-                    return numDevices * rule.getAbovelimit();
-                }
-            } else {
-                return numDevices * rule.getPricetolimit();
-            }
-        }
+//        // darmowy program
+//        if (rule.getWithsub() == 0 && rule.getPricetolimit() == 0 && rule.getAbovelimit() == 0) {
+//            return 0;
+//        }
+//
+//        // przypadek: tylko limit, bez wpływu abonamentu (jak "Król Lear")
+//        if (rule.getWithsub() == 0 && rule.getAcclimit() > 0) {
+//            if (numDevices <= rule.getAcclimit()) {
+//                return numDevices * rule.getPricetolimit();
+//            } else {
+//                return numDevices * rule.getAbovelimit();
+//            }
+//        }
+//
+//        // przypadek: abonament decyduje
+//        if (hasSubscription) {
+//            return numDevices * rule.getWithsub();
+//        } else {
+//            if (rule.getAcclimit() > 0) {
+//                if (numDevices <= rule.getAcclimit()) {
+//                    return numDevices * rule.getPricetolimit();
+//                } else {
+//                    return numDevices * rule.getAbovelimit();
+//                }
+//            } else {
+//                return numDevices * rule.getPricetolimit();
+//            }
+//        }
     }
 }

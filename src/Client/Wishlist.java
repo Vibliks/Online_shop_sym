@@ -1,6 +1,7 @@
-import Films.Program;
+package Client;
 
-import java.util.List;
+import Basket.Basket;
+import Films.Program;
 
 public interface Wishlist {
 
@@ -10,5 +11,8 @@ public interface Wishlist {
 
     public Wishlist getWishList();
 
+    public Basket getBasket();
+
     public String toString();
+
 }

@@ -37,12 +37,13 @@ import Films.*;
 import static Film_type.Film_type.*;
 import static BOOL.BOOL.*;
 import Film_type.Film_type;
-import shop.Pricelist;
-
+import shop.*;
+import Basket.*;
+import Client.*;
 public class Main {
 
 //    // cena programów danego gatunku z koszyka
-//    static int price(Basket b, GENRE g) {
+//    static int price(Basket.Basket b, GENRE g) {
 //        /*<- tu trzeba wpisać ciało metody */
 //    }
 
@@ -102,18 +103,34 @@ public class Main {
         Wishlist listaKinomana = kinoman.getWishList();
 
         System.out.println("Lista życzeń klienta " + listaKinomana);
-//
-//        // Przed płaceniem, klient przepakuje programy z listy życzeń do koszyka.
-//        // Możliwe, że na liście życzeń są programy niemające ceny w cenniku,
-//        // w takim przypadku nie trafiłyby do koszyka
-//        Basket koszykKinomana = kinoman.getBasket();
-//        kinoman.pack();
 
-//        // Co jest na liście życzeń klienta Kinomana
-//        System.out.println("Po przepakowaniu, lista życzeń klienta " + kinoman.getWishlist());
-//
-//        // Co jest w koszyku klienta Kinoman
-//        System.out.println("Po przepakowaniu, koszyk klienta " + koszykKinomana);
+        //wyprowadził na konsolę podobne do poniższych wyniki:
+//Lista życzeń klienta Kinoman:
+//        Król Lear, typ: obyczaj, ile: 4 urządzenia, cena 10.00
+//        Król Artur, typ: sensacja, ile: 3 urządzenia, cena 0.00
+//        Król lew, typ: muzyczny, ile: 2 urządzenia, cena 5.00
+//Korona, typ: komedia, ile: 2 urządzenia, ceny brak
+
+        // Przed płaceniem, klient przepakuje programy z listy życzeń do koszyka.
+        // Możliwe, że na liście życzeń są programy niemające ceny w cenniku,
+        // w takim przypadku nie trafiłyby do koszyka
+        Basket koszykKinomana = kinoman.getBasket();
+        kinoman.pack();
+
+        // Co jest na liście życzeń klienta Kinomana
+        System.out.println("Po przepakowaniu, lista życzeń klienta " + kinoman.getWishlist());
+
+        //        Po przepakowaniu, lista życzeń klienta Kinoman:
+//Korona, typ: komedia, ile: 2 urządzenia, ceny brak
+
+        // Co jest w koszyku klienta Kinoman
+        System.out.println("Po przepakowaniu, koszyk klienta " + koszykKinomana);
+
+//        Po przepakowaniu, koszyk klienta Kinoman:
+//        Król Lear, typ: obyczaj, ile: 4 urządzenia, cena 10.00
+//        Król Artur, typ: sensacja, ile: 3 urządzenia, cena 0.00
+//        Król lew, typ: muzyczny, ile: 2 urządzenia, cena 5.00
+
     }
 }
 //        // Ile wynosi cena wszystkich programów typu obyczajowego w koszyku klienta Kinoman
@@ -134,7 +151,7 @@ public class Main {
 //
 //        // Teraz przychodzi klient Krytyk,
 //        // deklaruje 60 zł na zamówienia
-//        Client krytyk = new Client("Krytyk", 60, NO);
+//        Client.Client krytyk = new Client.Client("Krytyk", 60, NO);
 //
 //        // Zamówił za dużo jak na tę kwotę
 //        krytyk.add(new Musical("Król lew", 2));
@@ -218,7 +235,7 @@ public class Main {
 
 //Wymagania dodatkowe:
 //korzystanie z klas abstrakcyjnych/interfejsów oraz z polimorfizmu jest obowiązkowe
-//pożądana jest minimalizacja kodu klas Wishlist oraz Basket
+//pożądana jest minimalizacja kodu klas Client.Client.Wishlist oraz Basket.Basket
 //istnieje tylko jeden obiekt-cennik oraz jeden obiekt-koszyk (na klienta), do których dostęp powinien być realizowany wyłącznie za pomocą metody getPricelist()/getBasket()
 //Ważne uwagi:
 //Być może są programy niemające ceny w cenniku, wtedy przy przepakowaniu z listy życzeń do koszyka nie są one usuwane z listy życzeń i nie trafią do koszyka.
