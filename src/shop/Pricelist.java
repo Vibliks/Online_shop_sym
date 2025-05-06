@@ -94,7 +94,9 @@ public class Pricelist {
                 return rule.getWithsub();
             } else { return  3 * rule.getWithsub() + (numDevices - 3) * rule.getAbovelimit(); }
         } else {
-            return 0;
+            if (numDevices <= 3) {
+                return rule.getPricetolimit() * numDevices;
+            } else { return  3 * rule.getPricetolimit() + (numDevices - 3) * rule.getAbovelimit(); }
         }
 
 

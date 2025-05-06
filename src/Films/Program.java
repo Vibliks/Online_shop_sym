@@ -6,7 +6,7 @@ public abstract class Program implements ProgramInterface {
         protected String title;
         protected int devices;
         protected boolean hasSubscription;
-
+        public static int suma;
 
     public Program(String title, int devices) {
             this.title = title;
@@ -35,16 +35,20 @@ public abstract class Program implements ProgramInterface {
             return devices;
         }
 
+
         public abstract Film_type getType();
 
 
     @Override
     public String toString(boolean hasSubscription) {
         double cena = Getcena(hasSubscription);
+
         if (cena < 0) {
             return title + ", typ: " + getType() + ", ile: " + devices + " urządzenia, ceny brak";
         } else {
             return title + ", typ: " + getType() + ", ile: " + devices + " urządzenia, cena " + Getcena(hasSubscription);
+
+
         }
     }
 

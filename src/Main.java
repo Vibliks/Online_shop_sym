@@ -36,16 +36,22 @@
 import Films.*;
 import static Film_type.Film_type.*;
 import static BOOL.BOOL.*;
+import static Payment.Payment_Type.*;
 import Film_type.Film_type;
 import shop.*;
 import Basket.*;
 import Client.*;
+import Payment.Payment_Type;
 public class Main {
 
-//    // cena programów danego gatunku z koszyka
-//    static int price(Basket.Basket b, GENRE g) {
-//        /*<- tu trzeba wpisać ciało metody */
-//    }
+    // cena programów danego gatunku z koszyka
+    static int price(Basket basket, Film_type genre) {
+        return (int) basket.getPrograms().stream()
+                .filter(program -> program.getType() == genre)
+                .mapToDouble(program -> program.Getcena(true))
+                .sum();
+    }
+
 
     public static void main(String[] args) {
 
@@ -80,7 +86,7 @@ public class Main {
         //System.out.println(cennik);
         //System.out.println("=============== \n");
         System.out.println("\n");
-        cennik.remove(Film_type.COMEDY, "Król");			// metoda remove (do usunięcia ceny konkretnego programu) przyjmująca 2 parametry
+        cennik.remove(Film_type.COMEDY, "Król");            // metoda remove (do usunięcia ceny konkretnego programu) przyjmująca 2 parametry
 
         System.out.println(cennik);
 
@@ -96,7 +102,6 @@ public class Main {
         kinoman.add(new Action("Król Artur", 3));
         kinoman.add(new Musical("Król lew", 2));
         kinoman.add(new Comedy("Korona", 2));
-
 
 
 //        // Lista życzeń klienta Kinoman
@@ -118,7 +123,7 @@ public class Main {
         kinoman.pack();
 
         // Co jest na liście życzeń klienta Kinomana
-        System.out.println("Po przepakowaniu, lista życzeń klienta " + kinoman.getWishlist());
+        System.out.println("Po przepakowaniu, lista życzeń klienta  " + kinoman.getWishlist());
 
         //        Po przepakowaniu, lista życzeń klienta Kinoman:
 //Korona, typ: komedia, ile: 2 urządzenia, ceny brak
@@ -131,63 +136,65 @@ public class Main {
 //        Król Artur, typ: sensacja, ile: 3 urządzenia, cena 0.00
 //        Król lew, typ: muzyczny, ile: 2 urządzenia, cena 5.00
 
+
+        // Ile wynosi cena wszystkich programów typu obyczajowego w koszyku klienta Kinoman
+        System.out.println("\n Progamy obyczajowe w koszyku klienta Kinoman kosztowały:  " + price(koszykKinomana, Film_type.DRAMA));
+
+
+
+
+        // Klient zapłaci...
+        kinoman.pay(CARD, false);	// płaci kartą płatniczą, prowizja 2%
+        // true oznacza, że w przypadku braku środków aplikacja sam odłoży nadmiarowe programy,
+        // wpp. rezygnacja z płacenia razem z czyszczeniem koszyka i listy życzeń
+
+        // Ile klientowi Kinoman zostało pieniędzy?
+        System.out.println("\n Po zapłaceniu, klientowi Kinoman zostało: " + kinoman.getWallet() + " zł");
+
+        // Mogło klientowi zabraknąć srodków, wtedy opcjonalnie programy mogą być odkładane,
+        // wpp. koszyk jest pusty po zapłaceniu
+        System.out.println("\n Po zapłaceniu, koszyk klienta " + kinoman.getBasket());
+        System.out.println("\n Po zapłaceniu, koszyk klienta " + koszykKinomana);
+
+        // Teraz przychodzi klient Krytyk,
+        // deklaruje 60 zł na zamówienia
+        Client krytyk = new Client("Krytyk", 60, NO);
+
+        // Zamówił za dużo jak na tę kwotę
+        krytyk.add(new Musical("Król lew", 2));
+        krytyk.add(new Comedy("Królowa", 3));
+
+        // Co klient Krytyk ma na swojej liście życzeń
+        System.out.println("Lista życzeń klienta " + krytyk.getWishlist());
+
+        Basket koszykKrytyka = krytyk.getBasket();
+        krytyk.pay();
+
+        // Co jest na liście życzeń klienta Krytyk
+        System.out.println("Po przepakowaniu, lista życzeń klienta " + krytyk.getWishlist());
+
+        // A co jest w koszyku klienta Krytyk
+        System.out.println("Po przepakowaniu, koszyk klienta " + krytyk.getBasket());
+
+        // klient Krytyk płaci
+        krytyk.pay(TRANSFER, true);	// płaci przelewem, bez prowizji
+
+        // Ile klientowi Krytyk zostało pieniędzy?
+        System.out.println("Po zapłaceniu, klientowi Krytyk zostało: " + krytyk.getWallet() + " zł");
+
+        // Co zostało w koszyku klienta Krytyk (za mało pieniędzy miał)
+        System.out.println("Po zapłaceniu, koszyk klienta " + koszykKrytyka);
+
+        krytyk.returnVOD(COMEDY, "Królowa", 1);	// zwrot (do koszyka) 1 urządzenia programu komediowego "Królowa" z ostatniej transakcji
+
+        // Ile klientowi krytyk zostało pieniędzy?
+        System.out.println("Po zwrocie, klientowi krytyk zostało: " + krytyk.getWallet() + " zł");
+
+        // Co zostało w koszyku klienta krytyk
+        System.out.println("Po zwrocie, koszyk klienta " + koszykKrytyka);
+
     }
 }
-//        // Ile wynosi cena wszystkich programów typu obyczajowego w koszyku klienta Kinoman
-//        System.out.println("Progamy obyczajowe w koszyku klienta Kinoman kosztowały:  " + price(koszykKinomana, Films.DRAMA));
-//
-//        // Klient zapłaci...
-//        kinoman.pay(CARD, false);	// płaci kartą płatniczą, prowizja 2%
-//        // true oznacza, że w przypadku braku środków aplikacja sam odłoży nadmiarowe programy,
-//        // wpp. rezygnacja z płacenia razem z czyszczeniem koszyka i listy życzeń
-//
-//        // Ile klientowi Kinoman zostało pieniędzy?
-//        System.out.println("Po zapłaceniu, klientowi Kinoman zostało: " + kinoman.getWallet() + " zł");
-//
-//        // Mogło klientowi zabraknąć srodków, wtedy opcjonalnie programy mogą być odkładane,
-//        // wpp. koszyk jest pusty po zapłaceniu
-//        System.out.println("Po zapłaceniu, koszyk klienta " + kinoman.getBasket());
-//        System.out.println("Po zapłaceniu, koszyk klienta " + koszykKinomana);
-//
-//        // Teraz przychodzi klient Krytyk,
-//        // deklaruje 60 zł na zamówienia
-//        Client.Client krytyk = new Client.Client("Krytyk", 60, NO);
-//
-//        // Zamówił za dużo jak na tę kwotę
-//        krytyk.add(new Musical("Król lew", 2));
-//        krytyk.add(new Comedy("Królowa", 3));
-//
-//        // Co klient Krytyk ma na swojej liście życzeń
-//        System.out.println("Lista życzeń klienta " + krytyk.getWishlist());
-//
-//        Koszyk koszykKrytyka = krytyk.getBasket();
-//        krytyk.pay();
-//
-//        // Co jest na liście życzeń klienta Krytyk
-//        System.out.println("Po przepakowaniu, lista życzeń klienta " + krytyk.getWishlist());
-//
-//        // A co jest w koszyku klienta Krytyk
-//        System.out.println("Po przepakowaniu, koszyk klienta " + krytyk.getBasket());
-//
-//        // klient Krytyk płaci
-//        krytyk.pay(TRANSFER, true);	// płaci przelewem, bez prowizji
-//
-//        // Ile klientowi Krytyk zostało pieniędzy?
-//        System.out.println("Po zapłaceniu, klientowi Krytyk zostało: " + krytyk.getWallet() + " zł");
-//
-//        // Co zostało w koszyku klienta Krytyk (za mało pieniędzy miał)
-//        System.out.println("Po zapłaceniu, koszyk klienta " + koszykKrytyka);
-//
-//        krytyk.returnVOD(Films.COMEDY, "Królowa", 1);	// zwrot (do koszyka) 1 urządzenia programu komediowego "Królowa" z ostatniej transakcji
-//
-//        // Ile klientowi krytyk zostało pieniędzy?
-//        System.out.println("Po zwrocie, klientowi krytyk zostało: " + krytyk.getWallet() + " zł");
-//
-//        // Co zostało w koszyku klienta krytyk
-//        System.out.println("Po zwrocie, koszyk klienta " + koszykKrytyka);
-//
-//    }
-//}
 
 //wyprowadził na konsolę podobne do poniższych wyniki:
 //Lista życzeń klienta Kinoman:
