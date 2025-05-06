@@ -61,11 +61,6 @@ public class Pricelist {
         return null;
     }
 
-
-//    public int Getcena(){
-//        return HashPriceList.size();
-//    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -99,34 +94,5 @@ public class Pricelist {
             } else { return  3 * rule.getPricetolimit() + (numDevices - 3) * rule.getAbovelimit(); }
         }
 
-
-//        // darmowy program
-//        if (rule.getWithsub() == 0 && rule.getPricetolimit() == 0 && rule.getAbovelimit() == 0) {
-//            return 0;
-//        }
-//
-//        // przypadek: tylko limit, bez wpływu abonamentu (jak "Król Lear")
-//        if (rule.getWithsub() == 0 && rule.getAcclimit() > 0) {
-//            if (numDevices <= rule.getAcclimit()) {
-//                return numDevices * rule.getPricetolimit();
-//            } else {
-//                return numDevices * rule.getAbovelimit();
-//            }
-//        }
-//
-//        // przypadek: abonament decyduje
-//        if (hasSubscription) {
-//            return numDevices * rule.getWithsub();
-//        } else {
-//            if (rule.getAcclimit() > 0) {
-//                if (numDevices <= rule.getAcclimit()) {
-//                    return numDevices * rule.getPricetolimit();
-//                } else {
-//                    return numDevices * rule.getAbovelimit();
-//                }
-//            } else {
-//                return numDevices * rule.getPricetolimit();
-//            }
-//        }
     }
 }

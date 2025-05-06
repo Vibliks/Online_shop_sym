@@ -13,9 +13,6 @@ public abstract class Program implements ProgramInterface {
             this.devices = devices;
         }
 
-//        public boolean Getifsub(){
-//            return true;
-//        }
 
     public double Getcena(boolean hasSubscription) {
         return Pricelist.calculatePrice(getType(), getTitle(), getDevices(), hasSubscription);
@@ -51,9 +48,4 @@ public abstract class Program implements ProgramInterface {
 
         }
     }
-
-
-
 }
-//                                      Król Lear, typ: obyczaj, ile: 4 urządzenia, cena 10.00
-//                                      Korona      (COMEDY)          on 2 devices

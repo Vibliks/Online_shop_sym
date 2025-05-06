@@ -44,13 +44,21 @@ import Client.*;
 import Payment.Payment_Type;
 public class Main {
 
-    // cena programów danego gatunku z koszyka
-    static int price(Basket basket, Film_type genre) {
-        return (int) basket.getPrograms().stream()
-                .filter(program -> program.getType() == genre)
-                .mapToDouble(program -> program.Getcena(true))
-                .sum();
+    static double price(Client client, Basket basket, Film_type filmtype) {
+        double total = 0.0;
+            System.out.println(filmtype);
+
+        for (Program program : basket.getPrograms()) {
+//            System.out.println(filmtype);
+//            System.out.println(program.getType());
+            if (program.getType() == filmtype) {
+                total += program.Getcena(client.hasSubscription());
+            }
+        }
+
+        return total;
     }
+
 
 
     public static void main(String[] args) {
@@ -85,10 +93,10 @@ public class Main {
         // darmowy dostęp
         //System.out.println(cennik);
         //System.out.println("=============== \n");
-        System.out.println("\n");
+//        System.out.println("\n");
         cennik.remove(Film_type.COMEDY, "Król");            // metoda remove (do usunięcia ceny konkretnego programu) przyjmująca 2 parametry
 
-        System.out.println(cennik);
+//        System.out.println(cennik);
 
         // Klient Kinoman deklaruje kwotę 60 zł na zamównienia, posiada abonament w serwisie
         Client kinoman = new Client("Kinoman", 60, YES);
@@ -136,9 +144,8 @@ public class Main {
 //        Król Artur, typ: sensacja, ile: 3 urządzenia, cena 0.00
 //        Król lew, typ: muzyczny, ile: 2 urządzenia, cena 5.00
 
-
         // Ile wynosi cena wszystkich programów typu obyczajowego w koszyku klienta Kinoman
-        System.out.println("\n Progamy obyczajowe w koszyku klienta Kinoman kosztowały:  " + price(koszykKinomana, Film_type.DRAMA));
+        System.out.println("\n Progamy obyczajowe w koszyku klienta Kinoman kosztowały:  " + price(kinoman, kinoman.getBasket(), Film_type.DRAMA));
 
 
 

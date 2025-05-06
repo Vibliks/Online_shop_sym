@@ -19,7 +19,6 @@ public class Client implements Wishlist {
     List<Program> wishlist = new ArrayList<>();
     private float cena;
     Basket basket;
-    Wishlist wishlist1;
 
 
     public Client(String name, int saldo, BOOL SUB) {
@@ -43,29 +42,43 @@ public class Client implements Wishlist {
     public void pack() {
         Pricelist cennik = Pricelist.getPricelist();
 
-        // Filtrowanie programów z ceną
+
         List<Program> withPrice = wishlist.stream()
                 .filter(program -> cennik.calculatePrice(program.getType(), program.getTitle(), program.getDevices(), hasSubscription()) != -1)
                 .collect(Collectors.toList());
 
-        // Przekazanie programów do koszyka
         basket.setProgram(withPrice);
 
-        // Usunięcie ich z listy życzeń
         wishlist.removeAll(withPrice);
     }
 
-    public void pay(Enum<Payment_Type> Payment,boolean bool){
-        for (Program program : wishlist) {
-            boolean temp = hasSubscription();
-            saldo = saldo - program.Getcena(temp);
+    public void pay(Payment_Type method, boolean bool) {
+        double totalsum = basket.getPrograms().stream()
+                .mapToDouble(p -> p.Getcena(hasSubscription()))
+                .sum();
+
+        if (method == Payment_Type.CARD) {
+            totalsum *= 1.02;
+        }
+
+        if (totalsum > saldo) {
+            if (bool) {
+                basket.clearProgram();
+            } else {
+                basket.clearProgram();
+                wishlist.clear();
+                return;
+            }
+        } else {
+            saldo -= totalsum;
+            basket.clearProgram();
         }
     }
 
     public void pay(){
         for (Program program : wishlist) {
             boolean temp = hasSubscription();
-            deductSaldo(program.Getcena(temp);
+            deductSaldo(program.Getcena(temp));
         }
     }
     public boolean hasSubscription() {
@@ -93,7 +106,7 @@ public class Client implements Wishlist {
         return name;
     }
 
-    public void deductSaldo(int amount) {
+    public void deductSaldo(double amount) {
         this.saldo -= amount;
     }
 
@@ -119,7 +132,6 @@ public class Client implements Wishlist {
         for (Program wish : wishlist) {
             sb.append("    ").append(wish.toString(sub)).append("\n");
         }
-
 
         return sb.toString();
     }
