@@ -37,6 +37,7 @@ import Films.*;
 import static Film_type.Film_type.*;
 import static BOOL.BOOL.*;
 import Film_type.Film_type;
+import shop.Pricelist;
 
 public class Main {
 
@@ -75,9 +76,9 @@ public class Main {
         cennik.add(ACTION, "Król Artur");        // metoda przyjmująca 2 parametry
         // (kolejność, typy i oznaczenie parametrów są obowiązkowe, podane argumenty wywołania są przykładowe):
         // darmowy dostęp
-        System.out.println(cennik);
-        System.out.println("=============== \n");
-
+        //System.out.println(cennik);
+        //System.out.println("=============== \n");
+        System.out.println("\n");
         cennik.remove(Film_type.COMEDY, "Król");			// metoda remove (do usunięcia ceny konkretnego programu) przyjmująca 2 parametry
 
         System.out.println(cennik);
@@ -101,13 +102,13 @@ public class Main {
         Wishlist listaKinomana = kinoman.getWishList();
 
         System.out.println("Lista życzeń klienta " + listaKinomana);
-
+//
 //        // Przed płaceniem, klient przepakuje programy z listy życzeń do koszyka.
 //        // Możliwe, że na liście życzeń są programy niemające ceny w cenniku,
 //        // w takim przypadku nie trafiłyby do koszyka
 //        Basket koszykKinomana = kinoman.getBasket();
 //        kinoman.pack();
-//
+
 //        // Co jest na liście życzeń klienta Kinomana
 //        System.out.println("Po przepakowaniu, lista życzeń klienta " + kinoman.getWishlist());
 //

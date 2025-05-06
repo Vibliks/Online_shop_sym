@@ -1,12 +1,14 @@
 package Films;
 import Film_type.Film_type;
+import shop.Pricelist;
 
-
-public abstract class Program {
+public abstract class Program implements ProgramInterface {
         protected String title;
         protected int devices;
+        protected boolean hasSubscription;
 
-        public Program(String title, int devices) {
+
+    public Program(String title, int devices) {
             this.title = title;
             this.devices = devices;
         }
@@ -15,14 +17,17 @@ public abstract class Program {
 //            return true;
 //        }
 
-        public int Getcena(){
+    public double Getcena(boolean hasSubscription) {
+        return Pricelist.calculatePrice(getType(), getTitle(), getDevices(), hasSubscription);
+    }
 
 
+    public void setHasSubscription(boolean hasSubscription) {
+        this.hasSubscription = hasSubscription;
+    }
 
-            return 0;
-        }
 
-        public String getTitle() {
+    public String getTitle() {
             return title;
         }
 
@@ -32,10 +37,19 @@ public abstract class Program {
 
         public abstract Film_type getType();
 
-        @Override
-        public String toString() {
-            return title + ", typ:" + getType() + ", ile: " + devices + " urządzeia, " + "cena " + Getcena();
+
+    @Override
+    public String toString(boolean hasSubscription) {
+        double cena = Getcena(hasSubscription);
+        if (cena < 0) {
+            return title + ", typ: " + getType() + ", ile: " + devices + " urządzenia, ceny brak";
+        } else {
+            return title + ", typ: " + getType() + ", ile: " + devices + " urządzenia, cena " + Getcena(hasSubscription);
         }
     }
+
+
+
+}
 //                                      Król Lear, typ: obyczaj, ile: 4 urządzenia, cena 10.00
 //                                      Korona      (COMEDY)          on 2 devices

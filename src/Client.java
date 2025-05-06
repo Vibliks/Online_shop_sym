@@ -10,7 +10,7 @@ public class Client implements Wishlist{
     private BOOL SUB;
     private boolean sub;
     List<Program> wishlist = new ArrayList<>();
-
+    private float cena;
 
 
     public Client(String name, int saldo, BOOL SUB) {
@@ -20,6 +20,11 @@ public class Client implements Wishlist{
             this.sub = true;
         } else {this.sub = false;}
         this.wishlist = new ArrayList<>();
+        if(sub == true){
+            this.cena = 0;
+        } else {
+            this.cena = 1;
+        }
     }
 
 
@@ -76,7 +81,7 @@ public class Client implements Wishlist{
         StringBuilder sb = new StringBuilder();
         sb.append(name).append(":\n");
         for (Program wish : wishlist) {
-            sb.append("    ").append(wish.toString()).append("\n");
+            sb.append("    ").append(wish.toString(sub)).append("\n");
         }
 
 
@@ -84,7 +89,11 @@ public class Client implements Wishlist{
         return sb.toString();
     }
 
-//    private double getPricePerDevice(Map<String, Map<GENRE, Price>> prices, String title, GENRE genre, int devices) {
+    public Basket GetBasket(){
+        return new Basket();
+    }
+
+//    private double getPricePerDevice(Map<String, Map<GENRE, shop.Price>> prices, String title, GENRE genre, int devices) {
 //        if (!prices.containsKey(title)) return -1.0;
 //        if (!prices.get(title).containsKey(genre)) return -1.0;
 //
@@ -103,8 +112,8 @@ public class Client implements Wishlist{
 //
 //    @Override
 //    public String toString() {
-//        Pricelist pricelist = Pricelist.getPricelist();
-//        Map<String, Map<GENRE, Price>> prices = pricelist.getPrices();
+//        shop.Pricelist pricelist = shop.Pricelist.getPricelist();
+//        Map<String, Map<GENRE, shop.Price>> prices = pricelist.getPrices();
 //
 //        StringBuilder sb = new StringBuilder();
 //        sb.append(name).append(":\n");

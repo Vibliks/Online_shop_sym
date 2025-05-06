@@ -1,29 +1,24 @@
 package Films;
 import Film_type.Film_type;
 
-public class Action extends Program{
-    private Film_type film_type;
+public class Action extends Program {
 
     public Action(String title, int devices) {
         super(title, devices);
-        this.film_type = Film_type.ACTION;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public int getDevices() {
-        return devices;
     }
 
     @Override
-    public Film_type getType(){
-        return this.film_type;
+    public Film_type getType() {
+        return Film_type.ACTION;
     }
 
     @Override
-    public String toString() {
-        return title + ", typ: " + "sensacja" + ", ile: " + devices + " urządzeia, " + "cena ";
+    public String toString(boolean hasSubscription) {
+        double cena = Getcena(hasSubscription);
+        if (cena < 0) {
+            return title + ", typ: sensacja, ile: " + devices + " urządzenia, ceny brak";
+        } else {
+            return title + ", typ: sensacja, ile: " + devices + " urządzenia, cena " + Getcena(hasSubscription);
+        }
     }
 }

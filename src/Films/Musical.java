@@ -1,29 +1,25 @@
 package Films;
 import Film_type.Film_type;
 
-public class Musical extends Program{
-    private Film_type film_type;
+public class Musical extends Program {
 
     public Musical(String title, int devices) {
         super(title, devices);
-        this.film_type = Film_type.MUSICAL;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public int getDevices() {
-        return devices;
     }
 
     @Override
-    public Film_type getType(){
-        return this.film_type;
+    public Film_type getType() {
+        return Film_type.MUSICAL;
     }
 
+
     @Override
-    public String toString() {
-        return title + ", typ: " + "muzyczny" + ", ile: " + devices + " urządzeia, " + "cena ";
+    public String toString(boolean hasSubscription) {
+        double cena = Getcena(hasSubscription);
+        if (cena < 0) {
+            return title + ", typ: muzyczny, ile: " + devices + " urządzenia, ceny brak";
+        } else {
+            return title + ", typ: muzyczny, ile: " + devices + " urządzenia, cena " + Getcena(hasSubscription);
+        }
     }
 }
